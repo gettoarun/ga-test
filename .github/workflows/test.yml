@@ -25,3 +25,10 @@ jobs:
           echo test, and deploy your project.
           echo SHA: is ${{ github.sha }}
           echo Ref: is ${{ github.ref }}
+          
+      - name: Generate My README
+        run: |
+           sed -i 's/${NAME}/${{ env.SECRET_NAME }}/g' README.md
+           cat README.md
+        env:
+          SECRET_NAME: ${{secrets.NAME}}
