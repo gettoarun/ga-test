@@ -11,6 +11,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Notify In Slack
+        uses: muinmomin/webhook-action@v1.0.0
+        with:
+          url: https://hooks.slack.com/services/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
+          data: '{"channel": "#random", "username": "webhookbot", "text": "This is posted to #random and comes from a bot named webhookbot.", "icon_emoji": ":ghost:"}'
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
@@ -37,5 +43,4 @@ jobs:
         uses: muinmomin/webhook-action@v1.0.0
         with:
           url: https://hooks.slack.com/services/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
-          data: '{"text": "This is a line of text in a channel.\nAnd this is another line of text."}'
-  
+          data: '{"channel": "#random", "username": "webhookbot", "text": "This is posted to #random and comes from a bot named webhookbot.", "icon_emoji": ":ghost:"}'
