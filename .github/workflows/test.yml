@@ -29,6 +29,17 @@ jobs:
       - name: Generate My README
         run: |
            sed -i 's/${NAME}/${{ env.SECRET_NAME }}/g' README.md
-           cat README.md
+           export CONTENT=$(cat README.md)
         env:
           SECRET_NAME: ${{secrets.NAME}}
+
+      - name: Notify in slack
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: random
+          SLACK_COLOR: '#3278BD'
+          SLACK_ICON: https://avatars3.githubusercontent.com/u/2242350?s=60&v=4
+          SLACK_MESSAGE: '${{ env.CONTENT }}'
+          SLACK_TITLE: Random
+          SLACK_USERNAME: arun
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
